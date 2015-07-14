@@ -1,0 +1,18 @@
+web:
+  extends:
+    file: common.yml
+    service: web
+  environment:
+    - RACK_ENV=production
+    - RAILS_ENV=production
+    - BUNDLE_PATH=/bundle
+    - SECRET_KEY_BASE=3f0c89b5781b8f7d21fc4c9e2a889bdd02e17cf9d80a8944b2c0f12656b3239011cf89adf71bc9a49bbc1450a87172872a86ff6f8c31d6c1c0722a30148db28f
+  links:
+    - db
+  volumes:
+    - .bundle:/bundle
+    - .:/rails
+db:
+  image: postgres
+  ports:
+    - "5432"
